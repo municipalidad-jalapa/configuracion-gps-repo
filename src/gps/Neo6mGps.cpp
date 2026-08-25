@@ -16,6 +16,9 @@ void Neo6mGps::actualizar() {
     while (_uart.available() > 0) {
         _parser.encode(static_cast<char>(_uart.read()));
     }
+    _satelites = _parser.satellites.isValid()
+                     ? static_cast<int>(_parser.satellites.value())
+                     : -1;
     if (intentarCapturar()) {
         _listaParaConsumir = true;
     }
@@ -23,6 +26,34 @@ void Neo6mGps::actualizar() {
 
 bool Neo6mGps::hayPosicionValida() const {
     return _listaParaConsumir;
+}
+
+unsigned long Neo6mGps::caracteresNmea() const {
+    return _parser.charsProcessed();
+}
+
+unsigned long Neo6mGps::nmeaCorrectas() const {
+    return _parser.passedChecksum();
+}
+
+unsigned long Neo6mGps::nmeaCorruptas() const {
+    return _parser.failedChecksum();
+}
+
+int Neo6mGps::satelites() const {
+    return _satelites;
+}
+
+bool Neo6mGps::ubicacionValida() const {
+    return _parser.location.isValid();
+}
+
+bool Neo6mGps::fechaValida() const {
+    return _parser.date.isValid();
+}
+
+bool Neo6mGps::horaValida() const {
+    return _parser.time.isValid();
 }
 
 bool Neo6mGps::obtenerPosicion(PosicionGps& posicion) {

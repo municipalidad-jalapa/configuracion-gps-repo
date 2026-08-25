@@ -32,7 +32,15 @@ void GestorTelemetria::capturarSiCorresponde() {
     const unsigned long ahora = millis();
     if (!_gps.hayPosicionValida()) {
         if (!_huboFix && ahora - _ultimoAvisoFixMs >= INTERVALO_LOG_ESPERANDO_FIX_MS) {
-            Serial.println("Esperando fix GPS");
+            Serial.printf(
+                "Esperando fix GPS nmea=%lu ok=%lu fail=%lu loc=%d fecha=%d hora=%d sat=%d\n",
+                _gps.caracteresNmea(),
+                _gps.nmeaCorrectas(),
+                _gps.nmeaCorruptas(),
+                _gps.ubicacionValida() ? 1 : 0,
+                _gps.fechaValida() ? 1 : 0,
+                _gps.horaValida() ? 1 : 0,
+                _gps.satelites());
             _ultimoAvisoFixMs = ahora;
         }
         return;

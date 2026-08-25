@@ -7,8 +7,4 @@ public:
     void iniciar() override;
     void mantenerConexion() override;
     bool estaConectado() const override;
-
-private:
-    bool _conectado = false;
-    unsigned long _ultimoIntentoMs = 0;
 };

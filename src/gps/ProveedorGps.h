@@ -14,4 +14,11 @@ public:
     virtual void actualizar() = 0;
     virtual bool hayPosicionValida() const = 0;
     virtual bool obtenerPosicion(PosicionGps& posicion) = 0;
+    virtual unsigned long caracteresNmea() const { return 0; }
+    virtual unsigned long nmeaCorrectas() const { return 0; }
+    virtual unsigned long nmeaCorruptas() const { return 0; }
+    virtual int satelites() const { return -1; }
+    virtual bool ubicacionValida() const { return false; }
+    virtual bool fechaValida() const { return false; }
+    virtual bool horaValida() const { return false; }
 };

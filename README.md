@@ -76,6 +76,17 @@ Para cambiar el GPS, reemplazar `Neo6mGps` por otro `ProveedorGps`.
 Para pasar de Wi-Fi a red celular, reemplazar `ConectividadWifi` y, si hace
 falta, el cliente HTTP. Cola, timestamp, lote y autenticacion no se reescriben.
 
+## Informe de pruebas
+
+Las pruebas del prototipo (compilacion, flasheo, GPS, cola local, ingesta por
+lotes y consulta de ultima posicion en el backend) se ejecutaron con resultado
+**APROBADO**. Los datos se comunican correctamente entre el modulo a bordo y
+el backend EcoRuta.
+
+Informe detallado (casos PT-01 a PT-07, evidencia y conclusion):
+
+* [docs/informe-pruebas-prototipo-a-bordo.md](docs/informe-pruebas-prototipo-a-bordo.md)
+
 ## Fuera de alcance (HU-49)
 
 Traccar, GeoLinker, OsmAnd, SIM800/SIM7600, TinyGSM, APN, CSQ/RSSI, TK103A,
